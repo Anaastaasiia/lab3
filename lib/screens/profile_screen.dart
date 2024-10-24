@@ -3,10 +3,12 @@ import '../repository/user_repository.dart';
 import '../models/user.dart';
 import '../widgets/custom_text_field.dart';
 
+
 class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
+
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final LocalUserRepository userRepository = LocalUserRepository();
@@ -14,11 +16,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final _surnameController = TextEditingController();
   final _emailController = TextEditingController();
 
+
   @override
   void initState() {
     super.initState();
     _loadUserInfo();
   }
+
 
   void _loadUserInfo() async {
     User? user = await userRepository.getUserInfo();
@@ -31,6 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
+
   void _updateUserInfo() async {
     if (_nameController.text.isEmpty ||
         _surnameController.text.isEmpty ||
@@ -41,6 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return;
     }
 
+
     User updatedUser = User(
       name: _nameController.text,
       surname: _surnameController.text,
@@ -48,11 +54,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
       password: '', // Залишаємо пароль незмінним
     );
 
+
     await userRepository.registerUser(updatedUser);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('Інформацію оновлено')),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {

@@ -4,14 +4,17 @@ import 'schedule_screen.dart';
 import '../repository/user_repository.dart';
 import '../models/user.dart';
 
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
+
 class _HomeScreenState extends State<HomeScreen> {
   final LocalUserRepository userRepository = LocalUserRepository();
   User? currentUser;
+
 
   @override
   void initState() {
@@ -19,12 +22,14 @@ class _HomeScreenState extends State<HomeScreen> {
     _loadUserInfo();
   }
 
+
   void _loadUserInfo() async {
     User? user = await userRepository.getUserInfo();
     setState(() {
       currentUser = user;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
